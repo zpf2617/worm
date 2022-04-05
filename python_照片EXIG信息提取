@@ -1,0 +1,32 @@
+import exifread
+import os
+from decimal import Decimal
+from decimal import getcontext
+
+def walkFile(filepath):
+    for root, dirs, files in os.walk(fpath):
+        return files
+
+def readExif(files):
+    for ff in files:
+        fname=fpath+'/'+ff
+        try:
+            f=open(fname,'rb')
+            contents=exifread.process_file(f)
+            lat=contents['GPS GPSLatitude']
+            long=contents['GPS GPSLongitude']
+            Idata=contents['Image DateTime']
+            GPSLat=Decimal(lat.values[2]/3600.0)+Decimal(lat.values[1]/60.0)+Decimal(lat.values[0]/1.0)
+            GPSlong=Decimal(long.values[2]/3600.0)+Decimal(long.values[1]/60.0)+Decimal(long.values[0]/1.0)  
+            outf.write(str(GPSLat)+','+str(GPSlong)+','+str(Idata)+','+str(ff)+'\n')
+        except Exception as e:
+            print('错误明细',e.__class__.__name__,e,fname)
+            continue
+
+getcontext().prec = 10
+fpath="C:/Users/zero/Documents/BaiduNetdiskWorkspace"
+
+with open('result.csv', 'a') as outf:
+    outf.write('纬度,经度,拍摄日期,文件名\n')
+    fs=walkFile(fpath)
+    readExif(fs)
