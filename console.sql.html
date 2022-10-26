@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>console.sql</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+console.sql</font>
+</center></td></tr></table>
+<pre><span class="s0">#DDL语句</span>
+<span class="s2">select database</span><span class="s1">()</span><span class="s2">;</span>
+<span class="s2">show databases ;</span>
+<span class="s2">use </span><span class="s1">testdatabase</span><span class="s2">;</span>
+<span class="s2">drop database </span><span class="s1">testdatabase</span><span class="s2">;</span>
+<span class="s2">show databases ;</span>
+
+<span class="s2">create database </span><span class="s1">test_database</span><span class="s2">;</span>
+<span class="s2">show databases ;</span>
+
+<span class="s2">use </span><span class="s1">test_database</span><span class="s2">;</span>
+
+<span class="s2">select database</span><span class="s1">()</span><span class="s2">;</span>
+<span class="s2">show tables ;</span>
+<span class="s2">create table </span><span class="s1">test_table(</span>
+    <span class="s1">id </span><span class="s2">int comment </span><span class="s3">'序号'</span><span class="s2">,</span>
+    <span class="s2">name varchar</span><span class="s1">(</span><span class="s4">10</span><span class="s1">) </span><span class="s2">comment </span><span class="s3">'姓名'</span>
+<span class="s1">)</span><span class="s2">comment </span><span class="s3">'测试表'</span><span class="s2">;</span>
+<span class="s2">desc </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">show create table </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">drop table </span><span class="s1">make</span><span class="s2">;</span>
+<span class="s2">use </span><span class="s1">world</span><span class="s2">;</span>
+<span class="s2">drop table </span><span class="s1">make</span><span class="s2">;</span>
+<span class="s2">use </span><span class="s1">test_database</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">add </span><span class="s1">age </span><span class="s2">tinyint unsigned comment </span><span class="s3">'年龄'</span><span class="s2">;</span>
+<span class="s2">desc </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">add </span><span class="s1">longname </span><span class="s2">tinyint unsigned comment </span><span class="s3">'大姓名'</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">add </span><span class="s1">gender </span><span class="s2">char</span><span class="s1">(</span><span class="s4">1</span><span class="s1">) </span><span class="s2">comment </span><span class="s3">'性别'</span><span class="s2">;</span>
+<span class="s2">alter  table  </span><span class="s1">test_table </span><span class="s2">modify </span><span class="s1">longname </span><span class="s2">int ;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">change </span><span class="s1">longname bigname </span><span class="s2">bigint comment </span><span class="s3">'大名子'</span><span class="s2">;</span>
+<span class="s2">show create table </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">add </span><span class="s1">agetest </span><span class="s2">tinyint unsigned comment </span><span class="s3">'年龄'</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">add </span><span class="s1">entrydate </span><span class="s2">date comment </span><span class="s3">'入职日期'</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">drop </span><span class="s1">agetest</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">test_table </span><span class="s2">rename to </span><span class="s1">my_test_table</span><span class="s2">;</span>
+<span class="s2">alter table </span><span class="s1">my_test_table </span><span class="s2">rename to </span><span class="s1">test_table</span><span class="s2">;</span>
+
+
+<span class="s0">#DML</span>
+<span class="s2">insert into </span><span class="s1">test_table(id</span><span class="s2">,name,</span><span class="s1">age</span><span class="s2">,</span><span class="s1">bigname</span><span class="s2">,</span><span class="s1">gender</span><span class="s2">,</span><span class="s1">entrydate) </span><span class="s2">values </span><span class="s1">(</span><span class="s4">5</span><span class="s2">,</span><span class="s3">'mick'</span><span class="s2">,</span><span class="s4">41</span><span class="s2">,</span><span class="s4">23241</span><span class="s2">,</span><span class="s3">'W'</span><span class="s2">,</span><span class="s3">'2019-4-19'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s2">update </span><span class="s1">test_table </span><span class="s2">set name</span><span class="s1">=</span><span class="s3">'MC'</span><span class="s2">,</span><span class="s1">age=</span><span class="s4">35 </span><span class="s2">where </span><span class="s1">id=</span><span class="s4">3</span><span class="s2">;</span>
+<span class="s2">update </span><span class="s1">test_table </span><span class="s2">set </span><span class="s1">gender=</span><span class="s3">'W' </span><span class="s2">where </span><span class="s1">id=</span><span class="s4">2</span><span class="s2">;</span>
+<span class="s2">update </span><span class="s1">test_table </span><span class="s2">set </span><span class="s1">entrydate=</span><span class="s3">'2009-1-10' </span><span class="s2">where </span><span class="s1">id=</span><span class="s4">4</span><span class="s2">;</span>
+<span class="s2">update </span><span class="s1">test_table </span><span class="s2">set </span><span class="s1">gender=</span><span class="s3">'M' </span><span class="s2">;</span>
+<span class="s2">delete from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">id=</span><span class="s4">2</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s2">select name,</span><span class="s1">id</span><span class="s2">,</span><span class="s1">age </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select name as </span><span class="s3">'姓名' </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select name </span><span class="s3">'名字'  </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select distinct name </span><span class="s3">'姓名' </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s2">select distinct </span><span class="s1">age </span><span class="s3">'年龄' </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s0">#DQL</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">limit </span><span class="s4">3</span><span class="s2">;</span>
+<span class="s2">select  </span><span class="s1">* </span><span class="s2">from  </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">test_table.gender=</span><span class="s3">'M' </span><span class="s2">and </span><span class="s1">age&lt;=</span><span class="s4">23</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age </span><span class="s2">in</span><span class="s1">(</span><span class="s4">59</span><span class="s2">,</span><span class="s4">35</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age =</span><span class="s4">59 </span><span class="s2">or </span><span class="s1">age=</span><span class="s4">35</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age !=</span><span class="s4">35</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age &lt;&gt;</span><span class="s4">35</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age &gt;</span><span class="s4">50 </span><span class="s2">or </span><span class="s1">age &lt;</span><span class="s4">30</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age </span><span class="s2">between </span><span class="s4">30 </span><span class="s2">and </span><span class="s4">50</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where name like </span><span class="s3">'__'</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where name like </span><span class="s3">'%e'</span><span class="s2">;</span>
+
+
+
+<span class="s0">#DQL_聚合函数_纵向计算</span>
+<span class="s2">select count</span><span class="s1">(id) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select count</span><span class="s1">(*) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">avg(age) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">max(age) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">min(age) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">sum(age) </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">sum(age) </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">test_table.gender=</span><span class="s3">'M'</span><span class="s2">;</span>
+
+
+<span class="s0">#DQL_分组查询</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">, count</span><span class="s1">(*) </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">group by </span><span class="s1">gender</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">, </span><span class="s1">avg(age) </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">group by </span><span class="s1">gender</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">,count</span><span class="s1">(*) </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age&gt;</span><span class="s4">25 </span><span class="s2">group by </span><span class="s1">gender </span><span class="s2">having count</span><span class="s1">(*)&gt;=</span><span class="s4">1</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">,count</span><span class="s1">(*) bieming </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age&gt;</span><span class="s4">25 </span><span class="s2">group by </span><span class="s1">gender </span><span class="s2">having </span><span class="s1">bieming&gt;=</span><span class="s4">1</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">,count</span><span class="s1">(*) </span><span class="s3">'别名' </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age&gt;</span><span class="s4">25 </span><span class="s2">group by </span><span class="s1">gender </span><span class="s2">having </span><span class="s3">'别名'</span><span class="s1">&gt;=</span><span class="s4">1</span><span class="s2">;</span><span class="s0">#这个别名不行</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">,count</span><span class="s1">(*) </span><span class="s2">as </span><span class="s1">别名 </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age&gt;</span><span class="s4">25 </span><span class="s2">group by </span><span class="s1">gender </span><span class="s2">having  </span><span class="s1">别名&gt;=</span><span class="s4">1</span><span class="s2">;</span><span class="s0">#这个别名可以</span>
+<span class="s2">select </span><span class="s1">gender</span><span class="s2">,count</span><span class="s1">(*)  别名 </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age&gt;</span><span class="s4">25 </span><span class="s2">group by </span><span class="s1">gender </span><span class="s2">having  </span><span class="s1">别名&gt;=</span><span class="s4">1</span><span class="s2">;</span><span class="s0">#这个别名可以，as省略</span>
+
+
+<span class="s0">#DQL_排序查询</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">id </span><span class="s2">asc ;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">age </span><span class="s2">;</span><span class="s0">#asc默认</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">age </span><span class="s2">desc ;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">age </span><span class="s2">desc ,</span><span class="s1">id </span><span class="s2">asc;</span>
+
+<span class="s0">#DQL_分页查询</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">limit </span><span class="s4">0</span><span class="s2">,</span><span class="s4">2</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">limit </span><span class="s4">2</span><span class="s2">,</span><span class="s4">2</span><span class="s2">;</span>
+
+
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age </span><span class="s2">in</span><span class="s1">(</span><span class="s4">23</span><span class="s2">,</span><span class="s4">59</span><span class="s1">) </span><span class="s2">and </span><span class="s1">test_table.gender = </span><span class="s3">'M'</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">test_table.gender=</span><span class="s3">'M' </span><span class="s2">and </span><span class="s1">age </span><span class="s2">between </span><span class="s4">25 </span><span class="s2">and </span><span class="s4">60 </span><span class="s2">and name like </span><span class="s3">'_C'</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">test_table.gender</span><span class="s2">, count</span><span class="s1">(*) </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age &lt;</span><span class="s4">50 </span><span class="s2">order by </span><span class="s1">gender</span><span class="s2">;</span>
+
+<span class="s2">select name,</span><span class="s1">age </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">where </span><span class="s1">age &gt;</span><span class="s4">25 </span><span class="s2">order by </span><span class="s1">age </span><span class="s2">asc ;</span>
+
+<span class="s0">#DQL_执行顺序</span>
+<span class="s0">#from &gt;where&gt;group by&gt;select&gt;order by&gt;limit    设置别名只能前面定义后面使用 asc升序，desc降序</span>
+
+
+<span class="s0">#DCL_管理用户</span>
+<span class="s2">use </span><span class="s1">mysql</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from user;</span><span class="s0">#这个表存了用户明细</span>
+
+<span class="s2">create user </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost' </span><span class="s2">identified by </span><span class="s3">'123456'</span><span class="s2">;</span>
+<span class="s2">create user </span><span class="s3">'test_everyone'</span><span class="s1">@</span><span class="s3">'%' </span><span class="s2">identified by </span><span class="s3">'123456'</span><span class="s2">;</span><span class="s0">#任意主机</span>
+<span class="s2">alter user </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost' </span><span class="s2">identified with </span><span class="s1">mysql_native_password </span><span class="s2">by </span><span class="s3">'111111'</span><span class="s2">;</span>
+<span class="s2">drop user </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span>
+
+<span class="s0">#DCL_控制权限</span>
+<span class="s2">show grants for </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span>
+<span class="s2">show grants for </span><span class="s3">'root'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span>
+<span class="s2">grant all on </span><span class="s1">test_database.* </span><span class="s2">to </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span><span class="s0">#授权所有权限</span>
+<span class="s2">grant all on </span><span class="s1">*.* </span><span class="s2">to </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span>
+<span class="s2">revoke all on </span><span class="s1">test_database.* </span><span class="s2">from </span><span class="s3">'test_me'</span><span class="s1">@</span><span class="s3">'localhost'</span><span class="s2">;</span><span class="s0">#撤销权限</span>
+
+<span class="s0">#字符串函数,只针对字符串，对其他类型不起作用</span>
+<span class="s2">select </span><span class="s1">concat(</span><span class="s3">'my'</span><span class="s2">,</span><span class="s3">' '</span><span class="s2">,</span><span class="s3">'SQL'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">lower(</span><span class="s3">'SQL'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">upper(</span><span class="s3">'hello!'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">lpad(</span><span class="s3">'me'</span><span class="s2">,</span><span class="s4">10</span><span class="s2">,</span><span class="s3">'-'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">Rpad(</span><span class="s3">'me'</span><span class="s2">,</span><span class="s4">10</span><span class="s2">,</span><span class="s3">'-'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">trim(</span><span class="s3">'   This is my name.   '</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">substring(</span><span class="s3">'hello my SQL '</span><span class="s2">,</span><span class="s4">7</span><span class="s2">,</span><span class="s4">2</span><span class="s1">)</span><span class="s2">;</span>
+
+<span class="s2">use </span><span class="s1">test_database</span><span class="s2">;</span>
+<span class="s2">update </span><span class="s1">test_table </span><span class="s2">set name</span><span class="s1">=lpad(</span><span class="s2">name,</span><span class="s4">5</span><span class="s2">,</span><span class="s3">'-'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s0">#数值函数</span>
+<span class="s2">select </span><span class="s1">ceil(</span><span class="s4">1.1</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">floor(</span><span class="s4">1.9</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">rand()</span><span class="s2">;</span>
+<span class="s2">select mod</span><span class="s1">(</span><span class="s4">5</span><span class="s2">,</span><span class="s4">3</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">round(</span><span class="s4">3.14159265358979323846</span><span class="s2">,</span><span class="s4">2</span><span class="s1">)</span>
+
+<span class="s2">select </span><span class="s1">lpad(round(rand()*</span><span class="s4">1000000</span><span class="s2">,</span><span class="s4">0</span><span class="s1">)</span><span class="s2">,</span><span class="s4">6</span><span class="s2">,</span><span class="s4">0</span><span class="s1">)</span><span class="s2">;</span><span class="s0">#生成随机6位数验证码</span>
+
+<span class="s0">#时间函数</span>
+<span class="s2">select </span><span class="s1">curdate()</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">curtime()</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">now()</span><span class="s2">;</span>
+<span class="s2">select YEAR</span><span class="s1">(now())</span><span class="s2">;</span>
+<span class="s2">select MONTH</span><span class="s1">(now())</span><span class="s2">;</span>
+<span class="s2">select DAY</span><span class="s1">(now())</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">date_add(now()</span><span class="s2">,interval </span><span class="s4">50 </span><span class="s2">day</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">datediff(</span><span class="s3">'2022-2-2'</span><span class="s2">,</span><span class="s3">'2019-2-8'</span><span class="s1">)</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">id</span><span class="s2">,name,</span><span class="s1">datediff(now()</span><span class="s2">,</span><span class="s1">test_table.entrydate) </span><span class="s2">as </span><span class="s1">’入职天数‘ </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">’入职天数‘ </span><span class="s2">desc ;</span><span class="s0">#这个排序会出错</span>
+<span class="s2">select </span><span class="s1">id</span><span class="s2">,name,</span><span class="s1">datediff(now()</span><span class="s2">,</span><span class="s1">test_table.entrydate) </span><span class="s2">as </span><span class="s1">入职天数 </span><span class="s2">from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">入职天数 </span><span class="s2">desc ;</span>
+
+<span class="s2">select </span><span class="s1">id</span><span class="s2">,name,</span><span class="s1">datediff(now()</span><span class="s2">,</span><span class="s1">test_table.entrydate) </span><span class="s2">as day from </span><span class="s1">test_table </span><span class="s2">order by </span><span class="s1">id </span><span class="s2">desc;</span>
+
+
+<span class="s0">#流程控制函数</span>
+<span class="s2">select if</span><span class="s1">(</span><span class="s2">true,</span><span class="s3">'ok'</span><span class="s2">,</span><span class="s3">'error'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">ifnull(</span><span class="s2">NULL,</span><span class="s3">'false'</span><span class="s1">)</span><span class="s2">;</span>
+
+<span class="s2">select</span>
+    <span class="s2">name,</span>
+    <span class="s1">(</span><span class="s2">case </span><span class="s1">gender </span><span class="s2">when </span><span class="s3">'W' </span><span class="s2">then </span><span class="s3">'girl' </span><span class="s2">when </span><span class="s3">'M' </span><span class="s2">then </span><span class="s3">'boy' </span><span class="s2">else </span><span class="s3">'nothing' </span><span class="s2">end</span><span class="s1">) </span><span class="s2">as </span><span class="s3">'男女'</span>
+<span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+<span class="s2">select</span>
+    <span class="s2">name,</span>
+    <span class="s1">(</span><span class="s2">case when </span><span class="s1">age&lt;</span><span class="s4">30 </span><span class="s2">then </span><span class="s3">'年轻人' </span><span class="s2">when </span><span class="s1">age&gt;</span><span class="s4">50 </span><span class="s2">then </span><span class="s3">'老年人' </span><span class="s2">else </span><span class="s3">'中年人' </span><span class="s2">end</span><span class="s1">)  </span><span class="s3">'年份'</span><span class="s2">,</span><span class="s0">#注意和上面有不同，这个是范围，上面找不出来</span>
+    <span class="s1">(</span><span class="s2">case when </span><span class="s1">age&lt;</span><span class="s4">30 </span><span class="s2">then </span><span class="s3">'年轻人' </span><span class="s2">when </span><span class="s1">age&gt;</span><span class="s4">50 </span><span class="s2">then </span><span class="s3">'老年人' </span><span class="s2">else </span><span class="s3">'中年人' </span><span class="s2">end</span><span class="s1">) </span><span class="s2">as </span><span class="s3">'年纪'</span><span class="s0">#注意和上面有不同，这个是范围，上面找不出来</span>
+<span class="s2">from </span><span class="s1">test_table</span><span class="s2">;</span>
+
+
+<span class="s0">#约束</span>
+<span class="s2">create table </span><span class="s1">test_user(</span>
+    <span class="s1">id </span><span class="s2">int unsigned not null primary key auto_increment comment </span><span class="s3">'ID'</span><span class="s2">,</span>
+    <span class="s2">name varchar</span><span class="s1">(</span><span class="s4">10</span><span class="s1">) </span><span class="s2">not null comment </span><span class="s3">'姓名'</span><span class="s2">,</span>
+    <span class="s2">number int unsigned unique comment </span><span class="s3">'编号'</span><span class="s2">,</span>
+    <span class="s1">age </span><span class="s2">tinyint unsigned check </span><span class="s1">( age&lt;</span><span class="s4">120 </span><span class="s2">and </span><span class="s1">age&gt;</span><span class="s4">1</span><span class="s1">) </span><span class="s2">comment </span><span class="s3">'年龄'</span><span class="s2">,</span>
+    <span class="s2">status char</span><span class="s1">(</span><span class="s4">1</span><span class="s1">) </span><span class="s2">default </span><span class="s4">1 </span><span class="s2">comment </span><span class="s3">'状态'</span><span class="s2">,</span>
+    <span class="s1">gender </span><span class="s2">char</span><span class="s1">(</span><span class="s4">1</span><span class="s1">) </span><span class="s2">check </span><span class="s1">( gender=</span><span class="s3">'M' </span><span class="s2">or </span><span class="s1">gender=</span><span class="s3">'W' </span><span class="s1">) </span><span class="s2">comment </span><span class="s3">'性别'</span>
+<span class="s1">)</span><span class="s2">comment </span><span class="s3">'测试用户表' </span><span class="s2">;</span>
+
+<span class="s2">insert into </span><span class="s1">test_user(</span><span class="s2">name,number,</span><span class="s1">age</span><span class="s2">,status,</span><span class="s1">gender) </span><span class="s2">values </span><span class="s1">(</span><span class="s3">'jim11'</span><span class="s2">,</span><span class="s4">23411093</span><span class="s2">,</span><span class="s4">27</span><span class="s2">,</span><span class="s4">1</span><span class="s2">,</span><span class="s3">'W'</span><span class="s1">)</span><span class="s2">,</span><span class="s1">(</span><span class="s3">'jim12'</span><span class="s2">,</span><span class="s4">790112343</span><span class="s2">,</span><span class="s4">38</span><span class="s2">,</span><span class="s4">0</span><span class="s2">,</span><span class="s3">'M'</span><span class="s1">)</span><span class="s2">;</span>
+
+<span class="s0">#外键约束</span>
+<span class="s2">create table </span><span class="s1">test_status(</span>
+    <span class="s1">st </span><span class="s2">char</span><span class="s1">(</span><span class="s4">1</span><span class="s1">) </span><span class="s2">unique comment </span><span class="s3">'状态'</span><span class="s2">,</span>
+    <span class="s1">emp </span><span class="s2">varchar</span><span class="s1">(</span><span class="s4">10</span><span class="s1">) </span><span class="s2">comment </span><span class="s3">'描述'</span>
+<span class="s1">)</span><span class="s2">comment </span><span class="s3">'测试状态表'</span><span class="s2">;</span>
+
+<span class="s2">insert into </span><span class="s1">test_status(st</span><span class="s2">,</span><span class="s1">emp) </span><span class="s2">values </span><span class="s1">(</span><span class="s3">'1'</span><span class="s2">,</span><span class="s3">'良好'</span><span class="s1">)</span><span class="s2">,</span><span class="s1">(</span><span class="s3">'0'</span><span class="s2">,</span><span class="s3">'不及格'</span><span class="s1">)</span><span class="s2">,</span><span class="s1">(</span><span class="s3">'2'</span><span class="s2">,</span><span class="s3">'优秀'</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">insert into </span><span class="s1">test_status(st</span><span class="s2">,</span><span class="s1">emp) </span><span class="s2">values </span><span class="s1">(</span><span class="s3">'1'</span><span class="s2">,</span><span class="s3">'良好'</span><span class="s1">)</span><span class="s2">;</span>
+
+
+<span class="s2">alter table </span><span class="s1">test_user </span><span class="s2">add constraint </span><span class="s1">fk_test_user_status </span><span class="s2">foreign key </span><span class="s1">(</span><span class="s2">status</span><span class="s1">) </span><span class="s2">references </span><span class="s1">test_status(st)</span><span class="s2">;</span><span class="s0">#要有数据，添加外键</span>
+<span class="s2">alter table </span><span class="s1">test_user </span><span class="s2">drop foreign key </span><span class="s1">fk_test_user_status</span><span class="s2">;</span><span class="s0">#删除外键</span>
+
+<span class="s0">#外键约束_cascade外键级联约束同步更新或者删除，no action ,restrict,不同步，不删除，set null置空</span>
+<span class="s2">alter table </span><span class="s1">test_user </span><span class="s2">add constraint </span><span class="s1">fk_test_user_status </span><span class="s2">foreign key </span><span class="s1">(</span><span class="s2">status</span><span class="s1">) </span><span class="s2">references </span><span class="s1">test_status(st) </span><span class="s2">on update cascade on delete cascade ;</span><span class="s0">#cascade外键级联约束</span>
+
+<span class="s0">#多表查询—_内连接</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user</span><span class="s2">,</span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">test_status.st = test_user.status</span><span class="s2">;</span><span class="s0">#多表查询内连接</span>
+
+<span class="s0">#多表查询—_左外连接=左边表全部数据（没有关联的外键数据）+内连接</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">left outer join </span><span class="s1">test_status </span><span class="s2">on </span><span class="s1">test_status.st=test_user.status</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">RIGHT outer join </span><span class="s1">test_status </span><span class="s2">on </span><span class="s1">test_status.st=test_user.status</span><span class="s2">;</span>
+<span class="s0">#多表查询—_自连接</span>
+<span class="s2">select </span><span class="s1">员工.name</span><span class="s2">,</span><span class="s1">领导.name </span><span class="s2">from </span><span class="s1">test_user 领导 </span><span class="s2">,</span><span class="s1">test_user 员工 </span><span class="s2">where </span><span class="s1">员工.leader = 领导.id</span><span class="s2">;</span><span class="s0">#多表查询—_自连接,领导没有上级领导</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user</span><span class="s2">;</span>
+<span class="s0">#多表查询—_自连接+左外连接（左员工表，显示所有员工及交集，老板没有领导也是员工，也查询)</span>
+<span class="s2">select </span><span class="s1">员工.name </span><span class="s3">'员工'</span><span class="s2">,</span><span class="s1">领导.name </span><span class="s3">'所属领导' </span><span class="s2">from </span><span class="s1">test_user 员工 </span><span class="s2">left outer join </span><span class="s1">test_user 领导 </span><span class="s2">on </span><span class="s1">员工.leader = 领导.id</span><span class="s2">;</span>
+
+
+<span class="s0">#联合查询_返回字段要相同_大概是OR的关系</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where </span><span class="s1">id &gt; </span><span class="s4">10</span>
+<span class="s2">union all</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where </span><span class="s1">age &lt;</span><span class="s4">50</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where </span><span class="s1">id &gt; </span><span class="s4">10</span>
+<span class="s2">union</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where </span><span class="s1">age &lt;</span><span class="s4">40</span><span class="s2">;</span>
+
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where </span><span class="s1">id &gt;</span><span class="s4">10 </span><span class="s2">or </span><span class="s1">age &lt;</span><span class="s4">40</span><span class="s2">;</span>
+
+<span class="s0">#多表查询—子查询—标量子查询</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where status</span><span class="s1">= (</span><span class="s2">select </span><span class="s1">st </span><span class="s2">from </span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">emp=</span><span class="s3">'优秀'</span><span class="s1">)</span><span class="s2">;</span><span class="s0">#括号只能返回一个值</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where status</span><span class="s1">&lt; (</span><span class="s2">select </span><span class="s1">st </span><span class="s2">from </span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">emp=</span><span class="s3">'优秀'</span><span class="s1">)</span><span class="s2">;</span>
+
+<span class="s0">#多表查询—子查询—列子查询in ,not in ,all ,any ,some ,any=some</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where status in </span><span class="s1">(</span><span class="s2">select </span><span class="s1">st </span><span class="s2">from </span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">st&lt;</span><span class="s4">2</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where status </span><span class="s1">&gt;</span><span class="s2">all </span><span class="s1">(</span><span class="s2">select </span><span class="s1">st </span><span class="s2">from </span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">st&lt;</span><span class="s4">2</span><span class="s1">)</span><span class="s2">;</span>
+<span class="s2">select </span><span class="s1">* </span><span class="s2">from </span><span class="s1">test_user </span><span class="s2">where status </span><span class="s1">&gt;</span><span class="s2">any </span><span class="s1">(</span><span class="s2">select </span><span class="s1">st </span><span class="s2">from </span><span class="s1">test_status </span><span class="s2">where </span><span class="s1">st&lt;</span><span class="s4">2</span><span class="s1">)</span><span class="s2">;</span></pre>
+</body>
+</html>
